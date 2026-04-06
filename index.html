@@ -637,15 +637,18 @@
 
     /* ─── CHEESE CARD IMAGES ───────────────────────────────────── */
     .card-image {
-      height: 140px;
+      height: 160px;
       border-radius: 10px;
       margin-bottom: 1.25rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3.5rem;
       position: relative;
       overflow: hidden;
+    }
+
+    .card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     .card-image::after {
@@ -702,7 +705,7 @@
 
       <!-- #1 -->
       <div class="cheese-card">
-        <div class="card-image" style="background:linear-gradient(135deg,#FF8C00,#FFA500,#FFD700);">🧀</div>
+        <div class="card-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Single_wrapped_slice_of_processed_cheese.jpg/500px-Single_wrapped_slice_of_processed_cheese.jpg" alt="American Cheese" loading="lazy" /></div>
         <div class="card-top">
           <div class="rank-badge">★</div>
           <div class="cheese-name">American Cheese</div>
@@ -717,7 +720,7 @@
 
       <!-- #2 -->
       <div class="cheese-card">
-        <div class="card-image" style="background:linear-gradient(135deg,#C8943A,#DDB060,#F0CFA0);">🫕</div>
+        <div class="card-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Fontina_DOP.jpg/500px-Fontina_DOP.jpg" alt="Fontina" loading="lazy" /></div>
         <div class="card-top">
           <div class="rank-badge silver">#2</div>
           <div class="cheese-name">Fontina</div>
@@ -732,7 +735,7 @@
 
       <!-- #3 -->
       <div class="cheese-card">
-        <div class="card-image" style="background:linear-gradient(135deg,#7A5810,#B08020,#C8A030);">🫕</div>
+        <div class="card-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Gruyere_alpage_th_wa.jpg/500px-Gruyere_alpage_th_wa.jpg" alt="Gruyère" loading="lazy" /></div>
         <div class="card-top">
           <div class="rank-badge bronze">#3</div>
           <div class="cheese-name">Gruy&egrave;re</div>
@@ -747,7 +750,7 @@
 
       <!-- #4 -->
       <div class="cheese-card">
-        <div class="card-image" style="background:linear-gradient(135deg,#C0A048,#D8BC70,#F0D898);">🫕</div>
+        <div class="card-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Raclette_20040817_140816.jpg/500px-Raclette_20040817_140816.jpg" alt="Raclette" loading="lazy" /></div>
         <div class="card-top">
           <div class="rank-badge">#4</div>
           <div class="cheese-name">Raclette</div>
@@ -762,7 +765,7 @@
 
       <!-- #5 -->
       <div class="cheese-card">
-        <div class="card-image" style="background:linear-gradient(135deg,#D06828,#E88850,#F0A878);">🥪</div>
+        <div class="card-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Block_of_Muenster_cheese.jpg/500px-Block_of_Muenster_cheese.jpg" alt="Muenster" loading="lazy" /></div>
         <div class="card-top">
           <div class="rank-badge">#5</div>
           <div class="cheese-name">Muenster</div>
@@ -777,7 +780,7 @@
 
       <!-- #6 -->
       <div class="cheese-card">
-        <div class="card-image" style="background:linear-gradient(135deg,#B84800,#E06010,#FF7820);">🍔</div>
+        <div class="card-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Somerset-Cheddar.jpg/500px-Somerset-Cheddar.jpg" alt="Aged Cheddar" loading="lazy" /></div>
         <div class="card-top">
           <div class="rank-badge">#6</div>
           <div class="cheese-name">Cheddar (Aged)</div>
@@ -792,7 +795,7 @@
 
       <!-- #7 -->
       <div class="cheese-card">
-        <div class="card-image" style="background:linear-gradient(135deg,#3A2010,#6B3A1A,#8B5020);">🍕</div>
+        <div class="card-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Chesses_gouda_affinage.JPG/500px-Chesses_gouda_affinage.JPG" alt="Smoked Gouda" loading="lazy" /></div>
         <div class="card-top">
           <div class="rank-badge">#7</div>
           <div class="cheese-name">Smoked Gouda</div>
@@ -807,7 +810,7 @@
 
       <!-- #8 -->
       <div class="cheese-card">
-        <div class="card-image" style="background:linear-gradient(135deg,#C8B890,#DDD0B0,#F0EAD8);">🍕</div>
+        <div class="card-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Mozzarella_di_bufala3.jpg/500px-Mozzarella_di_bufala3.jpg" alt="Mozzarella" loading="lazy" /></div>
         <div class="card-top">
           <div class="rank-badge">#8</div>
           <div class="cheese-name">Mozzarella (Whole Milk)</div>
@@ -822,7 +825,7 @@
 
       <!-- #9 -->
       <div class="cheese-card">
-        <div class="card-image" style="background:linear-gradient(135deg,#B8A878,#D0C098,#E8D8B8);">🥐</div>
+        <div class="card-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Brie_01.jpg/500px-Brie_01.jpg" alt="Brie" loading="lazy" /></div>
         <div class="card-top">
           <div class="rank-badge">#9</div>
           <div class="cheese-name">Brie</div>
@@ -837,7 +840,7 @@
 
       <!-- #10 -->
       <div class="cheese-card">
-        <div class="card-image" style="background:linear-gradient(135deg,#A88818,#C0A030,#D8B848);">🥙</div>
+        <div class="card-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Provolone_watermelon_shape.jpg/500px-Provolone_watermelon_shape.jpg" alt="Provolone" loading="lazy" /></div>
         <div class="card-top">
           <div class="rank-badge">#10</div>
           <div class="cheese-name">Provolone (Aged)</div>
