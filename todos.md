@@ -1,5 +1,5 @@
 
 
 - [x] add images
-- [ ] add reviews
-- [ ] add recipes section
+- [x] add reviews
+- [x] add recipes section
