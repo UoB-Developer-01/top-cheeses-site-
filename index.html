@@ -478,6 +478,27 @@
       border-top: 1px solid #C97B1A18;
     }
 
+    /* ─── CHEESE CARD IMAGES ───────────────────────────────────── */
+    .card-image {
+      height: 140px;
+      border-radius: 10px;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, #1E0F05cc 0%, transparent 65%);
+      pointer-events: none;
+    }
+
     /* ─── ANIMATIONS ────────────────────────────────────────────── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(24px); }
@@ -524,6 +545,7 @@
 
       <!-- #1 -->
       <div class="cheese-card">
+        <div class="card-image" style="background:linear-gradient(135deg,#FF8C00,#FFA500,#FFD700);">🧀</div>
         <div class="card-top">
           <div class="rank-badge">★</div>
           <div class="cheese-name">American Cheese</div>
@@ -538,6 +560,7 @@
 
       <!-- #2 -->
       <div class="cheese-card">
+        <div class="card-image" style="background:linear-gradient(135deg,#C8943A,#DDB060,#F0CFA0);">🫕</div>
         <div class="card-top">
           <div class="rank-badge silver">#2</div>
           <div class="cheese-name">Fontina</div>
@@ -552,6 +575,7 @@
 
       <!-- #3 -->
       <div class="cheese-card">
+        <div class="card-image" style="background:linear-gradient(135deg,#7A5810,#B08020,#C8A030);">🫕</div>
         <div class="card-top">
           <div class="rank-badge bronze">#3</div>
           <div class="cheese-name">Gruy&egrave;re</div>
@@ -566,6 +590,7 @@
 
       <!-- #4 -->
       <div class="cheese-card">
+        <div class="card-image" style="background:linear-gradient(135deg,#C0A048,#D8BC70,#F0D898);">🫕</div>
         <div class="card-top">
           <div class="rank-badge">#4</div>
           <div class="cheese-name">Raclette</div>
@@ -580,6 +605,7 @@
 
       <!-- #5 -->
       <div class="cheese-card">
+        <div class="card-image" style="background:linear-gradient(135deg,#D06828,#E88850,#F0A878);">🥪</div>
         <div class="card-top">
           <div class="rank-badge">#5</div>
           <div class="cheese-name">Muenster</div>
@@ -594,6 +620,7 @@
 
       <!-- #6 -->
       <div class="cheese-card">
+        <div class="card-image" style="background:linear-gradient(135deg,#B84800,#E06010,#FF7820);">🍔</div>
         <div class="card-top">
           <div class="rank-badge">#6</div>
           <div class="cheese-name">Cheddar (Aged)</div>
@@ -608,6 +635,7 @@
 
       <!-- #7 -->
       <div class="cheese-card">
+        <div class="card-image" style="background:linear-gradient(135deg,#3A2010,#6B3A1A,#8B5020);">🍕</div>
         <div class="card-top">
           <div class="rank-badge">#7</div>
           <div class="cheese-name">Smoked Gouda</div>
@@ -622,6 +650,7 @@
 
       <!-- #8 -->
       <div class="cheese-card">
+        <div class="card-image" style="background:linear-gradient(135deg,#C8B890,#DDD0B0,#F0EAD8);">🍕</div>
         <div class="card-top">
           <div class="rank-badge">#8</div>
           <div class="cheese-name">Mozzarella (Whole Milk)</div>
@@ -636,6 +665,7 @@
 
       <!-- #9 -->
       <div class="cheese-card">
+        <div class="card-image" style="background:linear-gradient(135deg,#B8A878,#D0C098,#E8D8B8);">🥐</div>
         <div class="card-top">
           <div class="rank-badge">#9</div>
           <div class="cheese-name">Brie</div>
@@ -650,6 +680,7 @@
 
       <!-- #10 -->
       <div class="cheese-card">
+        <div class="card-image" style="background:linear-gradient(135deg,#A88818,#C0A030,#D8B848);">🥙</div>
         <div class="card-top">
           <div class="rank-badge">#10</div>
           <div class="cheese-name">Provolone (Aged)</div>
