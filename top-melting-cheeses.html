@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Melt Report — Top 10 Cheeses for Melting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── RESET & BASE ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --espresso:  #1E0F05;
+      --mahogany:  #3A1A08;
+      --amber:     #C97B1A;
+      --gold:      #E8A020;
+      --sunburst:  #F5C842;
+      --cream:     #FFF3D6;
+      --parchment: #F5E6BF;
+      --smoke:     #8B6914;
+      --melt:      #FF9500;
+      --text-dim:  #C4985A;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--espresso);
+      color: var(--cream);
+      font-family: 'Lora', Georgia, serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      cursor: default;
+    }
+
+    /* ─── NOISE OVERLAY ────────────────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.04;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ─── HERO ─────────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 2rem 6rem;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 110%, #7A3C0055 0%, transparent 70%),
+        radial-gradient(ellipse 100% 80% at 50% -20%, #C97B1A22 0%, transparent 60%),
+        var(--espresso);
+      overflow: hidden;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--amber);
+      padding: 0.35em 1.1em;
+      border-radius: 100px;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.2s forwards;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(3.5rem, 10vw, 8rem);
+      font-weight: 900;
+      line-height: 0.92;
+      color: var(--sunburst);
+      text-shadow: 0 0 80px #E8A02055, 4px 4px 0 #7A3500;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 0.4s forwards;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--cream);
+      text-shadow: 0 0 60px #FFF3D633, 3px 3px 0 #5C2800;
+    }
+
+    .hero-tagline {
+      font-family: 'Lora', serif;
+      font-style: italic;
+      font-size: clamp(1rem, 2.5vw, 1.35rem);
+      color: var(--text-dim);
+      margin-top: 2rem;
+      max-width: 480px;
+      line-height: 1.6;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 0.65s forwards;
+    }
+
+    /* drip decoration */
+    .drip-row {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      margin-top: 3.5rem;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 0.85s forwards;
+    }
+
+    .drip {
+      width: 10px;
+      background: linear-gradient(to bottom, var(--gold), var(--melt));
+      border-radius: 0 0 50px 50px;
+      animation: drip-fall 2.4s ease-in-out infinite alternate;
+      box-shadow: 0 4px 20px #FF950055;
+    }
+    .drip:nth-child(1) { height: 40px; animation-delay: 0s; }
+    .drip:nth-child(2) { height: 70px; animation-delay: 0.3s; }
+    .drip:nth-child(3) { height: 55px; animation-delay: 0.15s; }
+    .drip:nth-child(4) { height: 80px; animation-delay: 0.5s; }
+    .drip:nth-child(5) { height: 45px; animation-delay: 0.1s; }
+    .drip:nth-child(6) { height: 65px; animation-delay: 0.4s; }
+    .drip:nth-child(7) { height: 35px; animation-delay: 0.25s; }
+
+    @keyframes drip-fall {
+      from { transform: scaleY(0.85); opacity: 0.7; }
+      to   { transform: scaleY(1.15); opacity: 1; }
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--smoke);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      opacity: 0;
+      animation: fadeUp 1s ease 1.3s forwards;
+    }
+    .scroll-hint::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 36px;
+      background: linear-gradient(to bottom, var(--amber), transparent);
+      animation: pulse-line 1.8s ease-in-out infinite;
+    }
+    @keyframes pulse-line {
+      0%, 100% { opacity: 0.3; transform: scaleY(0.8); }
+      50%       { opacity: 1;   transform: scaleY(1);   }
+    }
+
+    /* ─── SECTION LABEL ────────────────────────────────────────── */
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--amber);
+      text-align: center;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-heading {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      text-align: center;
+      color: var(--sunburst);
+      margin-bottom: 3.5rem;
+    }
+
+    /* ─── RANKINGS SECTION ─────────────────────────────────────── */
+    .rankings {
+      padding: 6rem 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    /* Top 3 span full row on wider screens */
+    @media (min-width: 700px) {
+      .card-grid .cheese-card:nth-child(1) { grid-column: span 2; }
+    }
+    @media (min-width: 900px) {
+      .card-grid .cheese-card:nth-child(1) { grid-column: span 1; }
+    }
+
+    /* ─── CHEESE CARD ──────────────────────────────────────────── */
+    .cheese-card {
+      position: relative;
+      background:
+        linear-gradient(145deg, #3D1F08ee, #261208ee),
+        repeating-linear-gradient(
+          60deg,
+          transparent,
+          transparent 12px,
+          #ffffff03 12px,
+          #ffffff03 13px
+        );
+      border: 1px solid #C97B1A28;
+      border-radius: 16px;
+      padding: 1.75rem;
+      transition: transform 0.35s cubic-bezier(.22,.68,0,1.2),
+                  box-shadow 0.35s ease,
+                  border-color 0.3s ease;
+      overflow: hidden;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards;
+    }
+
+    /* stagger cards */
+    .cheese-card:nth-child(1)  { animation-delay: 0.05s; }
+    .cheese-card:nth-child(2)  { animation-delay: 0.12s; }
+    .cheese-card:nth-child(3)  { animation-delay: 0.19s; }
+    .cheese-card:nth-child(4)  { animation-delay: 0.26s; }
+    .cheese-card:nth-child(5)  { animation-delay: 0.33s; }
+    .cheese-card:nth-child(6)  { animation-delay: 0.40s; }
+    .cheese-card:nth-child(7)  { animation-delay: 0.47s; }
+    .cheese-card:nth-child(8)  { animation-delay: 0.54s; }
+    .cheese-card:nth-child(9)  { animation-delay: 0.61s; }
+    .cheese-card:nth-child(10) { animation-delay: 0.68s; }
+
+    .cheese-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, #C97B1A15, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+
+    .cheese-card:hover {
+      transform: translateY(-6px) scale(1.015);
+      box-shadow: 0 20px 50px #00000060, 0 0 0 1px #E8A02055, 0 8px 20px #C97B1A22;
+      border-color: #C97B1A66;
+    }
+
+    .cheese-card:hover::before { opacity: 1; }
+
+    /* Gold shimmer on top card */
+    .cheese-card:first-child {
+      background:
+        linear-gradient(145deg, #5C2E0Aee, #3A1A08ee);
+      border-color: #E8A02055;
+    }
+    .cheese-card:first-child:hover {
+      box-shadow: 0 20px 60px #00000070, 0 0 0 1px #F5C84288, 0 8px 30px #E8A02033;
+      border-color: #F5C842;
+    }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      margin-bottom: 1rem;
+    }
+
+    .rank-badge {
+      width: 2.4rem;
+      height: 2.4rem;
+      min-width: 2.4rem;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), var(--amber));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--espresso);
+      box-shadow: 0 2px 12px #C97B1A55;
+    }
+
+    .cheese-card:first-child .rank-badge {
+      background: linear-gradient(135deg, var(--sunburst), #FF9500);
+      box-shadow: 0 2px 20px #F5C84288;
+      font-size: 1rem;
+      width: 2.8rem;
+      height: 2.8rem;
+      min-width: 2.8rem;
+    }
+
+    .rank-badge.silver {
+      background: linear-gradient(135deg, #D4D4D4, #9E9E9E);
+      box-shadow: 0 2px 12px #AAAAAA44;
+    }
+
+    .rank-badge.bronze {
+      background: linear-gradient(135deg, #CD7F32, #A0522D);
+      box-shadow: 0 2px 12px #CD7F3244;
+    }
+
+    .cheese-name {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--cream);
+      line-height: 1.2;
+    }
+
+    .cheese-card:first-child .cheese-name { font-size: 1.45rem; }
+
+    .cheese-reason {
+      font-family: 'Lora', serif;
+      font-style: italic;
+      font-size: 0.875rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+      margin-bottom: 1.2rem;
+    }
+
+    /* Melt score bar */
+    .score-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .score-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: var(--smoke);
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .score-bar-track {
+      flex: 1;
+      height: 6px;
+      background: #FFFFFF0D;
+      border-radius: 100px;
+      overflow: hidden;
+    }
+
+    .score-bar-fill {
+      height: 100%;
+      border-radius: 100px;
+      background: linear-gradient(90deg, var(--amber), var(--sunburst), var(--melt));
+      box-shadow: 0 0 10px #F5C84266;
+      transform-origin: left;
+      animation: barGrow 1s cubic-bezier(.22,.68,0,1.1) forwards;
+      transform: scaleX(0);
+    }
+
+    @keyframes barGrow {
+      to { transform: scaleX(1); }
+    }
+
+    .score-value {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--sunburst);
+      white-space: nowrap;
+      font-weight: 500;
+    }
+
+    /* ─── DIVIDER ───────────────────────────────────────────────── */
+    .divider {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--amber)44, transparent);
+    }
+
+    .divider-icon {
+      font-size: 1.4rem;
+      line-height: 1;
+    }
+
+    /* ─── TIPS SECTION ─────────────────────────────────────────── */
+    .tips-section {
+      padding: 6rem 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1rem;
+    }
+
+    .tip-card {
+      background: linear-gradient(160deg, #2A1206, #1E0F05);
+      border: 1px solid #C97B1A22;
+      border-radius: 12px;
+      padding: 1.5rem 1.4rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .tip-card:hover {
+      border-color: #C97B1A66;
+      transform: translateY(-3px);
+    }
+
+    .tip-icon {
+      font-size: 1.6rem;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .tip-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--sunburst);
+      margin-bottom: 0.35rem;
+    }
+
+    .tip-body {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      line-height: 1.55;
+    }
+
+    /* ─── FOOTER ────────────────────────────────────────────────── */
+    footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #5C3A14;
+      border-top: 1px solid #C97B1A18;
+    }
+
+    /* ─── ANIMATIONS ────────────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Intersection-based reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── HERO ──────────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero-badge">The Definitive Melt Report &mdash; 2026 Edition</div>
+    <h1 class="hero-title">The&nbsp;Art<br/>of the <em>Melt</em></h1>
+    <p class="hero-tagline">Ten extraordinary cheeses, ranked by their ability to transform heat into pure, molten bliss.</p>
+    <div class="drip-row" aria-hidden="true">
+      <div class="drip"></div>
+      <div class="drip"></div>
+      <div class="drip"></div>
+      <div class="drip"></div>
+      <div class="drip"></div>
+      <div class="drip"></div>
+      <div class="drip"></div>
+    </div>
+    <div class="scroll-hint">Scroll to explore</div>
+  </section>
+
+  <!-- ── RANKINGS ───────────────────────────────────────────────── -->
+  <section class="rankings">
+    <p class="section-label reveal">Ranked by Melt Score</p>
+    <h2 class="section-heading reveal">The&nbsp;Top&nbsp;Ten</h2>
+
+    <div class="card-grid">
+
+      <!-- #1 -->
+      <div class="cheese-card">
+        <div class="card-top">
+          <div class="rank-badge">★</div>
+          <div class="cheese-name">American Cheese</div>
+        </div>
+        <p class="cheese-reason">Specifically engineered to melt smoothly and uniformly; contains emulsifiers that prevent separation.</p>
+        <div class="score-row">
+          <span class="score-label">Melt Score</span>
+          <div class="score-bar-track"><div class="score-bar-fill" style="width:100%"></div></div>
+          <span class="score-value">10 / 10</span>
+        </div>
+      </div>
+
+      <!-- #2 -->
+      <div class="cheese-card">
+        <div class="card-top">
+          <div class="rank-badge silver">#2</div>
+          <div class="cheese-name">Fontina</div>
+        </div>
+        <p class="cheese-reason">Creamy texture with excellent melting properties; creates a rich, smooth layer perfect for grilled cheese.</p>
+        <div class="score-row">
+          <span class="score-label">Melt Score</span>
+          <div class="score-bar-track"><div class="score-bar-fill" style="width:95%"></div></div>
+          <span class="score-value">9.5 / 10</span>
+        </div>
+      </div>
+
+      <!-- #3 -->
+      <div class="cheese-card">
+        <div class="card-top">
+          <div class="rank-badge bronze">#3</div>
+          <div class="cheese-name">Gruy&egrave;re</div>
+        </div>
+        <p class="cheese-reason">High fat content and low moisture create ideal melting conditions; becomes nutty and complex when melted.</p>
+        <div class="score-row">
+          <span class="score-label">Melt Score</span>
+          <div class="score-bar-track"><div class="score-bar-fill" style="width:90%"></div></div>
+          <span class="score-value">9 / 10</span>
+        </div>
+      </div>
+
+      <!-- #4 -->
+      <div class="cheese-card">
+        <div class="card-top">
+          <div class="rank-badge">#4</div>
+          <div class="cheese-name">Raclette</div>
+        </div>
+        <p class="cheese-reason">Traditionally melted; naturally creamy texture and mild flavor make it ideal for melting applications.</p>
+        <div class="score-row">
+          <span class="score-label">Melt Score</span>
+          <div class="score-bar-track"><div class="score-bar-fill" style="width:90%"></div></div>
+          <span class="score-value">9 / 10</span>
+        </div>
+      </div>
+
+      <!-- #5 -->
+      <div class="cheese-card">
+        <div class="card-top">
+          <div class="rank-badge">#5</div>
+          <div class="cheese-name">Muenster</div>
+        </div>
+        <p class="cheese-reason">Mild, creamy, and very pliable when heated; melts evenly without becoming greasy.</p>
+        <div class="score-row">
+          <span class="score-label">Melt Score</span>
+          <div class="score-bar-track"><div class="score-bar-fill" style="width:85%"></div></div>
+          <span class="score-value">8.5 / 10</span>
+        </div>
+      </div>
+
+      <!-- #6 -->
+      <div class="cheese-card">
+        <div class="card-top">
+          <div class="rank-badge">#6</div>
+          <div class="cheese-name">Cheddar (Aged)</div>
+        </div>
+        <p class="cheese-reason">Good melting ability with added flavor; sharp varieties contribute complexity to melted applications.</p>
+        <div class="score-row">
+          <span class="score-label">Melt Score</span>
+          <div class="score-bar-track"><div class="score-bar-fill" style="width:80%"></div></div>
+          <span class="score-value">8 / 10</span>
+        </div>
+      </div>
+
+      <!-- #7 -->
+      <div class="cheese-card">
+        <div class="card-top">
+          <div class="rank-badge">#7</div>
+          <div class="cheese-name">Smoked Gouda</div>
+        </div>
+        <p class="cheese-reason">Smooth melting with pronounced smoky flavor; excellent for elevated comfort foods and grilled cheese.</p>
+        <div class="score-row">
+          <span class="score-label">Melt Score</span>
+          <div class="score-bar-track"><div class="score-bar-fill" style="width:80%"></div></div>
+          <span class="score-value">8 / 10</span>
+        </div>
+      </div>
+
+      <!-- #8 -->
+      <div class="cheese-card">
+        <div class="card-top">
+          <div class="rank-badge">#8</div>
+          <div class="cheese-name">Mozzarella (Whole Milk)</div>
+        </div>
+        <p class="cheese-reason">Stretches beautifully when melted; the classic choice for pizza and Italian dishes.</p>
+        <div class="score-row">
+          <span class="score-label">Melt Score</span>
+          <div class="score-bar-track"><div class="score-bar-fill" style="width:80%"></div></div>
+          <span class="score-value">8 / 10</span>
+        </div>
+      </div>
+
+      <!-- #9 -->
+      <div class="cheese-card">
+        <div class="card-top">
+          <div class="rank-badge">#9</div>
+          <div class="cheese-name">Brie</div>
+        </div>
+        <p class="cheese-reason">Melts into a luxurious, creamy texture; best melted gently to preserve delicate flavors.</p>
+        <div class="score-row">
+          <span class="score-label">Melt Score</span>
+          <div class="score-bar-track"><div class="score-bar-fill" style="width:75%"></div></div>
+          <span class="score-value">7.5 / 10</span>
+        </div>
+      </div>
+
+      <!-- #10 -->
+      <div class="cheese-card">
+        <div class="card-top">
+          <div class="rank-badge">#10</div>
+          <div class="cheese-name">Provolone (Aged)</div>
+        </div>
+        <p class="cheese-reason">Moderate melting ability with semi-hard texture; adds subtle smoky notes when melted.</p>
+        <div class="score-row">
+          <span class="score-label">Melt Score</span>
+          <div class="score-bar-track"><div class="score-bar-fill" style="width:70%"></div></div>
+          <span class="score-value">7 / 10</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── DIVIDER ─────────────────────────────────────────────────── -->
+  <div class="divider reveal" aria-hidden="true">
+    <div class="divider-icon">🧀</div>
+  </div>
+
+  <!-- ── TIPS ───────────────────────────────────────────────────── -->
+  <section class="tips-section">
+    <p class="section-label reveal">Master the Craft</p>
+    <h2 class="section-heading reveal">Tips for the Perfect Melt</h2>
+
+    <div class="tips-grid">
+
+      <div class="tip-card reveal">
+        <div class="tip-icon">🌡️</div>
+        <div>
+          <div class="tip-title">Temperature Control</div>
+          <p class="tip-body">Use medium to medium-low heat to prevent scorching or uneven melting.</p>
+        </div>
+      </div>
+
+      <div class="tip-card reveal">
+        <div class="tip-icon">💧</div>
+        <div>
+          <div class="tip-title">Moisture Content</div>
+          <p class="tip-body">Cheeses with higher moisture and fat content melt more smoothly and evenly.</p>
+        </div>
+      </div>
+
+      <div class="tip-card reveal">
+        <div class="tip-icon">🧴</div>
+        <div>
+          <div class="tip-title">Shredding</div>
+          <p class="tip-body">Shredded cheese melts faster and more evenly than large chunks or slabs.</p>
+        </div>
+      </div>
+
+      <div class="tip-card reveal">
+        <div class="tip-icon">🎨</div>
+        <div>
+          <div class="tip-title">Combining Cheeses</div>
+          <p class="tip-body">Mix high-melting cheeses with flavorful varieties for best texture and taste.</p>
+        </div>
+      </div>
+
+      <div class="tip-card reveal">
+        <div class="tip-icon">🚫</div>
+        <div>
+          <div class="tip-title">Avoid Overheating</div>
+          <p class="tip-body">Most cheeses break down and become greasy if overheated — patience is key.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── FOOTER ─────────────────────────────────────────────────── -->
+  <footer>
+    &copy; 2026 &nbsp;&mdash;&nbsp; The Melt Report &nbsp;&mdash;&nbsp; Crafted with heat &amp; love
+  </footer>
+
+  <script>
+    // Intersection observer for scroll reveals
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          // slight stagger by DOM order
+          const delay = Array.from(reveals).indexOf(entry.target) * 40;
+          setTimeout(() => entry.target.classList.add('visible'), delay);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    reveals.forEach(el => observer.observe(el));
+
+    // Trigger bar animations when card enters viewport
+    const cards = document.querySelectorAll('.cheese-card');
+    const cardObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const bar = entry.target.querySelector('.score-bar-fill');
+          if (bar) {
+            bar.style.animation = 'none';
+            void bar.offsetWidth; // reflow
+            bar.style.animation = '';
+          }
+          cardObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    cards.forEach(c => cardObs.observe(c));
+  </script>
+</body>
+</html>
