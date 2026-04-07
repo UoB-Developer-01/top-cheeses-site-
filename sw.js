@@ -1,4 +1,4 @@
-const CACHE_NAME = 'melt-report-v3';
+const CACHE_NAME = 'melt-report-v4';
 
 const PRECACHE = [
   './',
