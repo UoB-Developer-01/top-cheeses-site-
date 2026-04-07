@@ -1,15 +1,12 @@
 {
   "name": "The Melt Report - Top 10 Cheeses for Melting",
   "short_name": "Melt Report",
-  "id": "./",
   "description": "Ten extraordinary cheeses ranked by their ability to transform heat into pure, molten bliss.",
-  "start_url": "./",
-  "scope": "./",
   "display": "standalone",
-  "prefer_related_applications": false,
-  "theme_color": "#C97B1A",
-  "background_color": "#1E0F05",
-  "categories": ["food", "lifestyle"],
+  "lang": "en-US",
+  "start_url": "/index.html",
+  "background_color": "white",
+  "theme_color": "white",
   "screenshots": [
     {
       "src": "icons/icon-512.png",
@@ -19,6 +16,7 @@
     }
   ],
   "icons": [
+    { "src": "icons/icon-72.png",           "sizes": "48x48",   "type": "image/png" },
     { "src": "icons/icon-72.png",           "sizes": "72x72",   "type": "image/png" },
     { "src": "icons/icon-96.png",           "sizes": "96x96",   "type": "image/png" },
     { "src": "icons/icon-128.png",          "sizes": "128x128", "type": "image/png" },
@@ -31,3 +29,4 @@
     { "src": "icons/icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
   ]
 }
+
