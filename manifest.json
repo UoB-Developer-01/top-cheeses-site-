@@ -6,19 +6,10 @@
   "start_url": "/top-cheeses-site-/",
   "scope": "/top-cheeses-site-/",
   "display": "standalone",
-  "orientation": "portrait-primary",
+  "prefer_related_applications": false,
   "theme_color": "#C97B1A",
   "background_color": "#1E0F05",
   "categories": ["food", "lifestyle"],
-  "screenshots": [
-    {
-      "src": "icons/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "form_factor": "narrow",
-      "label": "The Melt Report home screen"
-    }
-  ],
   "icons": [
     { "src": "icons/icon-72.png",           "sizes": "72x72",   "type": "image/png" },
     { "src": "icons/icon-96.png",           "sizes": "96x96",   "type": "image/png" },
